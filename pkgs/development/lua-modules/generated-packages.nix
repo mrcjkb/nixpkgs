@@ -380,6 +380,52 @@ final: prev: {
     }
   ) { };
 
+  cloud_storage = callPackage (
+    {
+      buildLuarocksPackage,
+      date,
+      fetchFromGitHub,
+      fetchurl,
+      lua-cjson,
+      luaOlder,
+      luaexpat,
+      luaossl,
+      luasocket,
+      mimetypes,
+    }:
+    buildLuarocksPackage {
+      pname = "cloud_storage";
+      version = "1.3.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/cloud_storage-1.3.0-1.rockspec";
+          sha256 = "0fhr4f4m9smwv4z2pq6l0gwf4rfna21fi4z7qb80hwvl5z8j1yvh";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "cloud_storage";
+        rev = "v1.3.0";
+        hash = "sha256-ObDFcvOkXZd1i75pgp3ICI3JsiH0LU9b1M/DZZNDEik=";
+      };
+
+      disabled = luaOlder "5.1";
+      propagatedBuildInputs = [
+        date
+        lua-cjson
+        luaexpat
+        luaossl
+        luasocket
+        mimetypes
+      ];
+
+      meta = {
+        homepage = "https://github.com/leafo/cloud_storage.git";
+        description = "Access Google Cloud Storage from Lua";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   commons-nvim = callPackage (
     {
       buildLuarocksPackage,
@@ -602,6 +648,39 @@ final: prev: {
         homepage = "http://github.com/hishamhm/datafile";
         description = "A library for handling paths when loading data files";
         license.fullName = "MIT/X11";
+      };
+    }
+  ) { };
+
+  date = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      luaAtLeast,
+      luaOlder,
+    }:
+    buildLuarocksPackage {
+      pname = "date";
+      version = "2.2.1-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/date-2.2.1-1.rockspec";
+          sha256 = "0yksq18pmsczf8w3n3qdircyk1sy1dmcfkf2nszrsx44sw27y94a";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "Tieske";
+        repo = "date";
+        rev = "version_2.2.1";
+        hash = "sha256-P+blk1/M8hc9rWkF4UTDEoRZQPUY3XNmgXuF9Pes2KI=";
+      };
+
+      disabled = luaOlder "5.0" || luaAtLeast "5.5";
+
+      meta = {
+        homepage = "https://github.com/Tieske/date";
+        description = "Date & Time module for Lua 5.x";
+        license.fullName = "MIT";
       };
     }
   ) { };

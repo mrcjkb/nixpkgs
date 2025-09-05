@@ -10,6 +10,7 @@ busted,,,,,,
 busted-htest,,,,,,mrcjkb
 cassowary,,,,,,alerque
 cldr,,,,,,alerque
+cloud_storage,,,,,,
 commons.nvim,,,,,,mrcjkb
 compat53,,,,,,vcunat
 cosmo,,,,,,
@@ -17,6 +18,7 @@ coxpcall,,,,1.17.0-1,,
 cqueues,,,,,,vcunat
 cyan,,,,,,
 datafile,,,,,,
+date,,,,,,
 digestif,,,,,5.3,
 dkjson,,,,,,
 fennel,,,,,,misterio77
