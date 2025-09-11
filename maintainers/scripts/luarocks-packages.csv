@@ -162,6 +162,7 @@ sqlite,,,,,,
 std._debug,,,,,,
 std.normalize,,,,,,
 stdlib,,,,41.2.2,,vyp
+struct,,,,,,
 tableshape,,,,,,
 teal-language-server,,,,,,
 telescope-manix,,,,,,

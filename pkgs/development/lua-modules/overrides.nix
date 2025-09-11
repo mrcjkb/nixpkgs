@@ -1069,6 +1069,14 @@ in
     '';
   });
 
+  struct = prev.struct.overrideAttrs (oa: {
+    # to avoid "unpacker appears to have produced no directories"
+    unpackCmd = ''
+      mkdir contents
+      tar --directory=contents -xzf "$curSrc"
+    '';
+  });
+
   tiktoken_core = prev.tiktoken_core.overrideAttrs (oa: {
     cargoDeps = rustPlatform.fetchCargoVendor {
       src = oa.src;
