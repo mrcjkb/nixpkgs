@@ -112,6 +112,8 @@ rec {
     }
   ) { };
 
+  lapis-eswidget = callPackage ../development/lua-modules/lapis-eswidget { };
+
   lua-pam = callPackage (
     {
       fetchFromGitHub,
