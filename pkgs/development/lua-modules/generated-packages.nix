@@ -5206,6 +5206,38 @@ final: prev: {
     }
   ) { };
 
+  tableshape = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      luaOlder,
+    }:
+    buildLuarocksPackage {
+      pname = "tableshape";
+      version = "2.6.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/tableshape-2.6.0-1.rockspec";
+          sha256 = "198hfddc1lnaxy21bp8nykb8paw5s1v653sl5s547yj3vmazzw2c";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "tableshape";
+        rev = "v2.6.0";
+        hash = "sha256-nnX/IcWiMqQRkFJ6Fm1SsjNJ7fT2yKGet19QV7qx+aQ=";
+      };
+
+      disabled = luaOlder "5.1";
+
+      meta = {
+        homepage = "https://github.com/leafo/tableshape";
+        description = "Test the shape or structure of a Lua table";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   teal-language-server = callPackage (
     {
       argparse,
