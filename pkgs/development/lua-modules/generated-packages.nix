@@ -4279,6 +4279,49 @@ final: prev: {
     }
   ) { };
 
+  moonrocks = callPackage (
+    {
+      ansicolors,
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      lua-cjson,
+      luaOlder,
+      luasocket,
+      penlight,
+    }:
+    buildLuarocksPackage {
+      pname = "moonrocks";
+      version = "1.1.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/moonrocks-1.1.0-1.rockspec";
+          sha256 = "13zm753dlfis4wqaqj136w1rm7ajsb4sj7h1nx9nq1xawfdddwam";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "moonrocks";
+        rev = "v1.1.0";
+        hash = "sha256-dr567RQF6bOTEy6W+AT4NrcPOEhCFhszvmGlzYDw5Og=";
+      };
+
+      disabled = luaOlder "5.1";
+      propagatedBuildInputs = [
+        ansicolors
+        lua-cjson
+        luasocket
+        penlight
+      ];
+
+      meta = {
+        homepage = "http://rocks.moonscript.org/";
+        description = "A tool for installing and uploading Lua packages to rocks.moons
+cript.org";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   moonscript = callPackage (
     {
       argparse,

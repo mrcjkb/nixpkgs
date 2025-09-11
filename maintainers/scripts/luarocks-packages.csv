@@ -129,6 +129,7 @@ mediator_lua,,,,,,
 middleclass,,,,,,
 mimetypes,,,,,,
 mini.test,,,,,,
+moonrocks,,,,,,
 moonscript,https://raw.githubusercontent.com/leafo/moonscript/master/moonscript-dev-1.rockspec,,,,,arobyn
 mpack,,,,,,
 neorg,,,,,,GaetanLepage
