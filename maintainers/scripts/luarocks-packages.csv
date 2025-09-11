@@ -37,6 +37,7 @@ image.nvim,,,,,,teto
 inifile,,,,,,
 inspect,,,,,,
 jsregexp,,,,,,
+lapis,,,,,,
 ldbus,,,http://luarocks.org/dev,,,
 ldoc,,,,,,
 lgi,,,,,,
