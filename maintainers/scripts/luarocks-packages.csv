@@ -21,6 +21,7 @@ datafile,,,,,,
 date,,,,,,
 digestif,,,,,5.3,
 dkjson,,,,,,
+etlua,,,,,,
 fennel,,,,,,misterio77
 fidget.nvim,,,,,,mrcjkb
 fifo,,,,,,
