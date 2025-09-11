@@ -4084,6 +4084,48 @@ final: prev: {
     }
   ) { };
 
+  mailgun = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      lpeg,
+      lua-cjson,
+      luaOlder,
+      luasec,
+      luasocket,
+    }:
+    buildLuarocksPackage {
+      pname = "mailgun";
+      version = "1.2.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/mailgun-1.2.0-1.rockspec";
+          sha256 = "1vb8mgxfqxq8k6aabhf1183gq6b1pyvr8mjgkk7fac43bfy3v8iv";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "lua-mailgun";
+        rev = "v1.2.0";
+        hash = "sha256-TrO8zbetJsE/6P5GQqCtvkSA7Y1Pj1T1OeFqhkgmJTo=";
+      };
+
+      disabled = luaOlder "5.1";
+      propagatedBuildInputs = [
+        lpeg
+        lua-cjson
+        luasec
+        luasocket
+      ];
+
+      meta = {
+        homepage = "https://github.com/leafo/lua-mailgun";
+        description = "Send email with Mailgun";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   markdown = callPackage (
     {
       buildLuarocksPackage,
