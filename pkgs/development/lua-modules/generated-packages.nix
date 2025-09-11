@@ -1183,6 +1183,38 @@ final: prev: {
     }
   ) { };
 
+  inifile = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      luaOlder,
+    }:
+    buildLuarocksPackage {
+      pname = "inifile";
+      version = "1.1-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/inifile-1.1-1.rockspec";
+          sha256 = "14iizpisr0z7fyky5hc43mnd7razmd5wdib8k7fysyzqz71v8yn6";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "bartbes";
+        repo = "inifile";
+        rev = "v1.1";
+        hash = "sha256-A+gYsJ/prGLlF4zsr231z/MYHonJNapQ5eUm22VXCNc=";
+      };
+
+      disabled = luaOlder "5.1";
+
+      meta = {
+        homepage = "https://github.com/bartbes/inifile";
+        description = "Inifile is a simple, complete ini parser for lua";
+        license.fullName = "Simplified BSD license";
+      };
+    }
+  ) { };
+
   inspect = callPackage (
     {
       buildLuarocksPackage,
