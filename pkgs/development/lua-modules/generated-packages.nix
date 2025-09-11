@@ -1328,6 +1328,40 @@ final: prev: {
     }
   ) { };
 
+  lapis-console = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      lapis,
+      lua,
+    }:
+    buildLuarocksPackage {
+      pname = "lapis-console";
+      version = "1.2.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/lapis-console-1.2.0-1.rockspec";
+          sha256 = "1947hsr891z47hwxynrcx6binzwshg3rr81wzcjszybhqv7hprkp";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "lapis-console";
+        rev = "v1.2.0";
+        hash = "sha256-gS0JxCRDAJ9g6fhzdNyZS1yvHYG6Qx7up4Ulkdm4hAw=";
+      };
+
+      disabled = lua.luaversion != "5.1";
+      propagatedBuildInputs = [ lapis ];
+
+      meta = {
+        homepage = "https://github.com/leafo/lapis-console.git";
+        description = "An interactive web based console for Lapis";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   ldbus = callPackage (
     {
       buildLuarocksPackage,
