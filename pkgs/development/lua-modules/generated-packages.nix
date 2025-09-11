@@ -1362,6 +1362,44 @@ final: prev: {
     }
   ) { };
 
+  lapis-exceptions = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      lapis,
+      lua,
+      tableshape,
+    }:
+    buildLuarocksPackage {
+      pname = "lapis-exceptions";
+      version = "2.4.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/lapis-exceptions-2.4.0-1.rockspec";
+          sha256 = "0rbgqw64wi1z9w0s4qp6wkz66jc45algsny8xmirqaahfbs4wp2v";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "lapis-exceptions";
+        rev = "v2.4.0";
+        hash = "sha256-LPq8VWWxRaL+ROy88RZIK1IOq2P5n/64wLIlRp1UfCA=";
+      };
+
+      disabled = lua.luaversion != "5.1";
+      propagatedBuildInputs = [
+        lapis
+        tableshape
+      ];
+
+      meta = {
+        homepage = "https://github.com/leafo/lapis-exceptions.git";
+        description = "Track Lapis exceptions to database and email when they happen";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   ldbus = callPackage (
     {
       buildLuarocksPackage,
