@@ -1400,6 +1400,44 @@ final: prev: {
     }
   ) { };
 
+  lapis-systemd = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      inifile,
+      lapis,
+      lua,
+    }:
+    buildLuarocksPackage {
+      pname = "lapis-systemd";
+      version = "2.1.0-1";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/lapis-systemd-2.1.0-1.rockspec";
+          sha256 = "11g81sj733wk9x83q3937gddx30qjha95r58szv3yw7z95n64svd";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "leafo";
+        repo = "lapis-systemd";
+        rev = "v2.1.0";
+        hash = "sha256-oiexd/D/P0rN+Gu9btz3OcEholGg2c/Z60GVHtcSfIc=";
+      };
+
+      disabled = lua.luaversion != "5.1";
+      propagatedBuildInputs = [
+        inifile
+        lapis
+      ];
+
+      meta = {
+        homepage = "https://github.com/leafo/lapis-systemd.git";
+        description = "Integrate Lapis with systemd";
+        license.fullName = "MIT";
+      };
+    }
+  ) { };
+
   ldbus = callPackage (
     {
       buildLuarocksPackage,
