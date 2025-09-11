@@ -3986,6 +3986,38 @@ final: prev: {
     }
   ) { };
 
+  lzlib = callPackage (
+    {
+      buildLuarocksPackage,
+      fetchFromGitHub,
+      fetchurl,
+      luaOlder,
+    }:
+    buildLuarocksPackage {
+      pname = "lzlib";
+      version = "0.4.1.53-4";
+      knownRockspec =
+        (fetchurl {
+          url = "mirror://luarocks/lzlib-0.4.1.53-4.rockspec";
+          sha256 = "1z0c7jr5mpjixhiq0yjlmyd6lpk63ybhq3g6lkwicdjsfs60lphh";
+        }).outPath;
+      src = fetchFromGitHub {
+        owner = "hishamhm";
+        repo = "lzlib";
+        rev = "0.4.1.53";
+        hash = "sha256-YwryEofn9eBnh9oq4xHZSCX+V1PjYgZhjinOb2xFvXc=";
+      };
+
+      disabled = luaOlder "5.1";
+
+      meta = {
+        homepage = "http://luaforge.net/projects/lzlib/";
+        description = "Lua bindings to the ZLib compression library";
+        license.fullName = "MIT/X11";
+      };
+    }
+  ) { };
+
   lzn-auto-require = callPackage (
     {
       buildLuarocksPackage,

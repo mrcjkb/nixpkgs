@@ -769,6 +769,15 @@ in
     '';
   });
 
+  lzlib = prev.lzlib.overrideAttrs (oa: {
+    externalDeps = [
+      {
+        name = "ZLIB";
+        dep = zlib;
+      }
+    ];
+  });
+
   neotest = prev.neotest.overrideAttrs (oa: {
     doCheck = stdenv.hostPlatform.isLinux;
     nativeCheckInputs = oa.nativeCheckInputs ++ [
